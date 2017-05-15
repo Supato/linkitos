@@ -1,7 +1,5 @@
 from django.http import HttpResponse
-from django.views.generic import View
+from django.views.generic import TemplateView
 
-class HelloView(View):
-
-    def get(self, request, *args, **kwargs):
-        return HttpResponse('Hello, World!')
+class HelloView(TemplateView):
+    template_name = "linkitos/index.html"

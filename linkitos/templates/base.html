@@ -1,0 +1,34 @@
+{% load i18n staticfiles compress sekizai_tags %}
+
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keyworks" content="{% block meta_keywords %}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
+    <title>Linkitos</title>
+    <link rel="shortcut icon" href="{% static "linkitos/img/favicon.ico" %}">
+
+    {% render_block "external_css" postprocessor "compressor.contrib.sekizai.compress" %}
+    {% render_block "css" postprocessor "compressor.contrib.sekizai.compress" %}
+
+    {% addtoblock "external_css" %}
+    {% endaddtoblock %}
+    {% addtoblock "css" %}
+    {% endaddtoblock %}
+</head>
+<body>
+    <div class="content">
+        {% block main %}{% endblock %}
+    </div>
+
+    {% render_block "external_js" postprocessor "compressor.contrib.sekizai.compress" %}
+    {% render_block "js" postprocessor "compressor.contrib.sekizai.compress" %}
+
+    {% addtoblock "external_js" %}
+    {% endaddtoblock %}
+    {% addtoblock "js" %}
+    {% endaddtoblock %}
+</body>
+</html>
