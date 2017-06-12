@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'compressor',
     'django_extensions',
+    'rest_framework',
     'linkitos',
     'sekizai',
 ]
