@@ -2,17 +2,29 @@
 Serializers for Content, Tags and it's relation
 """
 
-from rest_framework.serializers import ModelSerializer, SlugRelatedField
-from linkitos.models import Content, Tag
+from rest_framework.serializers import (ModelSerializer, SlugRelatedField,
+                                        ReadOnlyField, HyperlinkedModelSerializer)
+from linkitos.models import Content, Tag, ContentTag
+
+
+class ContentTagSerializer(HyperlinkedModelSerializer):
+    """
+    Content-Tag Relation Serializer
+    """
+    name = ReadOnlyField(source='tag.name')
+
+    class Meta:
+        model = ContentTag
+        fields = ('name', 'linked_at')
 
 
 class ContentSerializer(ModelSerializer):
     """
     Content serializer
     """
-    tags = SlugRelatedField(many=True,
-                            read_only=True,
-                            slug_field='name')
+    tags = ContentTagSerializer(source='contenttag_set',
+                                many=True,
+                                read_only=True)
 
     class Meta:
         model = Content
