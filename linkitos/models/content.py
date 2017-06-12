@@ -21,7 +21,7 @@ class Tag(models.Model):
     """
     Tag model
     """
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, unique=True)
     description = models.CharField(max_length=2048, blank=True)
 
     def __str__(self):
