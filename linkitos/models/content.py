@@ -36,7 +36,7 @@ class ContentTag(models.Model):
     """
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    linked_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = ("content", "tag")
